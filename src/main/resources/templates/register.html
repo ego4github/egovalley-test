@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/ego-small.png}">
+    <title>EgoValley</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link th:href="@{static/css/cover.css}" rel="stylesheet">
+    <link th:href="@{static/css/register.css}" rel="stylesheet">
+    <link th:href="@{static/css/footer.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <!-- 头 -->
+                <!--<div id="ctrl-header">
+                    <div th:replace="common/header :: myHeader"></div>
+                </div>-->
+
+                <!-- 体 -->
+                <div id="ctrl-body">
+                    <div class="container">
+                        <form class="form-register" id="registerForm">
+                            <h2 class="form-register-heading">新用户注册</h2>
+                            <br/>
+                            <table align="center">
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputUsername">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="text" id="inputUsername" name="inputUsername" class="form-control"
+                                               placeholder="请填写账户">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-username">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-username"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputPassword">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="password" id="inputPassword" name="inputPassword" class="form-control"
+                                               placeholder="请填写密码">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-password">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-password"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputPasswordConf">确认密码</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="password" id="inputPasswordConf" class="form-control" placeholder="请确认密码">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-passwordConf">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-passwordConf"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputNickname">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="text" id="inputNickname" name="inputNickname" class="form-control"
+                                               placeholder="请填写昵称">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-nickname">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-nickname"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="gender">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+                                    </td>
+                                    <td class="td-right" id="inputGender">
+                                        <input type="radio" id="gender" name="inputGender" value="1">男&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="inputGender" value="0">女&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="inputGender" value="2" checked>保密
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-gender">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-gender"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputBirthday">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="date" id="inputBirthday" name="inputBirthday" class="form-control"
+                                               placeholder="年/月/日">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-birthday">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-birthday"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputPhone">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="text" id="inputPhone" name="inputPhone" class="form-control"
+                                               placeholder="请填写手机">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-phone">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-phone"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputEmail">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="text" id="inputEmail" name="inputEmail" class="form-control"
+                                               placeholder="请填写邮箱">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-email">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-email"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-left">
+                                        <label for="inputCheckCode">验&nbsp;&nbsp;证&nbsp;&nbsp;码</label>
+                                    </td>
+                                    <td class="td-right">
+                                        <input type="text" id="inputCheckCode" name="inputCheckCode" class="form-control"
+                                               placeholder="请填写验证码">
+                                    </td>
+                                </tr>
+                                <tr class="tr-err" id="tr-err-checkCode">
+                                    <td class="td-left"></td>
+                                    <td class="td-right"><div class="register-err" id="err-checkCode"></div></td>
+                                </tr>
+                            </table>
+                            <div class="reg">
+                                <input type="button" id="btn-code" style="BACKGROUND-COLOR: transparent;" onclick="getCheckCode(1)" value="获取验证码"/>
+                            </div>
+                            <div class="btn-register">
+                                <button id="btn-block" class="btn btn-lg btn-primary" type="button" onclick="doRegister()">注&nbsp;&nbsp;&nbsp;&nbsp;册</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 尾 -->
+                <!--<div id="ctrl-footer" style="position: fixed; bottom: 0; width: 100%;">
+                    <div th:replace="common/footer :: myFooter"></div>
+                </div>-->
+
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/ie10-viewport-bug-workaround.js}"></script>
+    <script th:src="@{static/js/common.js}"></script>
+    <script th:src="@{static/js/header.js}"></script>
+    <script th:src="@{static/js/register.js}"></script>
+    <script type="text/javascript">
+        let wait = 60;
+    </script>
+</body>
+</html>

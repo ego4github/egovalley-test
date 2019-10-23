@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>EgoValley</title>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/welcome.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/footer.css}"/>
+</head>
+<body>
+    <div id="web_bg" style="background-image: url(static/images/egovalley.jpg);"></div>
+    <!-- 引入页头 -->
+    <div th:replace="common/header :: myHeader"></div>
+
+    <!--<h1 class="welcome">~Welcome~</h1>-->
+
+    <div class="login-box">
+        <div class="title">
+            <img th:src="@{static/images/ego-small.png}" alt="">
+            <span>欢迎光临伊戈山谷</span>
+        </div>
+        <div class="login_inner">
+            <!--登录错误提示消息-->
+            <div id="errorMsg" class="alert alert-danger"></div>
+            <form id="loginForm" action="" method="post" accept-charset="utf-8">
+                <input type="hidden" name="action" value="login"/>
+                <input id="j_username" name="username" type="text" placeholder="请输入账号" autocomplete="off">
+                <input id="j_password" name="password" type="password" placeholder="请输入密码" autocomplete="off">
+                <div class="verify">
+                    <input name="check" type="text" placeholder="请输入验证码" autocomplete="off">
+                    <span><img src="checkCode" alt="" onclick="changeCheckCode(this)"></span>
+                    <!--<a id="getCheckCode" href="javascript:;">获取验证码</a>-->
+                    <script type="text/javascript">
+                        //图片点击事件
+                        function changeCheckCode(img) {
+                            img.src="checkCode?"+new Date().getTime();
+                        }
+                    </script>
+                </div>
+                <div class="submit_btn">
+                    <button type="button" id="login">登录</button>
+                    <!--<div class="auto_login">
+                        <input type="checkbox" name="" class="checkbox">
+                        <span>自动登录</span>
+                    </div>-->
+                </div>
+            </form>
+            <div class="reg">第一次来? <a href="javascript:;">注册一个</a></div>
+        </div>
+    </div>
+
+    <!-- 引入页脚 -->
+    <div th:replace="common/footer :: myFooter"></div>
+
+    <script type="text/javascript" th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/common.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/welcome.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/header.js}"></script>
+</body>
+</html>
