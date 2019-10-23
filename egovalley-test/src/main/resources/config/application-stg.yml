@@ -1,0 +1,26 @@
+# 测试环境
+spring:
+  datasource:
+    url: jdbc:mysql://47.111.172.115:3306/egovalley_test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true&useSSL=false
+    username: root
+    password: Ego!666
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      max-lifetime: 28830000
+      maximum-pool-size: 9
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: true
+    prefix:
+      classpath: /templates
+count:
+  daily:
+    path: "/data/webApp/egovalley/files/daily.txt"
+  total:
+    path: "/data/webApp/egovalley/files/total.txt"
+total:
+  count:
+    time: "0 0 0 * * ?"

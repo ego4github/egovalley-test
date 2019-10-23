@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/ego-small.png}">
+    <title>EgoValley</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link th:href="@{static/css/cover.css}" rel="stylesheet">
+    <link th:href="@{static/css/login.css}" rel="stylesheet">
+    <link th:href="@{static/css/footer.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <!-- 头 -->
+                <div id="ctrl-header">
+                    <div th:replace="common/header :: myHeader"></div>
+                </div>
+
+                <!-- 体 -->
+                <div id="ctrl-body">
+                    <div class="container">
+                        <form class="form-login" id="loginForm" method="post" accept-charset="utf-8" action="">
+                            <img th:src="@{static/images/ego-small.png}" alt="" style="float: left;">
+                            <h3 class="form-login-heading">欢迎光临伊戈山谷</h3>
+                            <br/>
+                            <div>
+                                <label for="inputUsername" class="sr-only">账户</label>
+                                <i class="icon-user"></i>
+                                <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="账户" autofocus>
+                            </div>
+
+                            <label for="inputPassword" class="sr-only">密码</label>
+                            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="密码">
+                            <!--登录错误提示消息-->
+                            <div id="errorMsg" class="errorMsg"></div>
+                            <!--<div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="remember-me"> 自动登录 (没用)
+                                </label>
+                            </div>-->
+                            <br/>
+                            <button class="btn btn-lg btn-primary btn-block" type="button" id="buttonLogin" onclick="doLogin()">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                            <div class="reg">第一次来? <a href="javascript:;" onclick="toRegister()">注册</a>一下</div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 尾 -->
+                <div id="ctrl-footer" style="position: fixed; bottom: 0; width: 100%;">
+                    <div th:replace="common/footer :: myFooter"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/ie10-viewport-bug-workaround.js}"></script>
+    <script th:src="@{static/js/common.js}"></script>
+    <script th:src="@{static/js/header.js}"></script>
+    <script th:src="@{static/js/login.js}"></script>
+</body>
+</html>

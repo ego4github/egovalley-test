@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/joker.png}">
+    <title>Joker</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link th:href="@{static/css/joke.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <div class="inner cover">
+                    <h1 class="cover-heading">Hey! What brought you here?</h1>
+                    <p class="lead">You got a wrong way! This is my place! You better get out of here!</p>
+                    <p class="lead">And do not do it again...</p>
+                    <p class="lead">
+                        <a href="javascript:history.back();" class="btn btn-lg btn-default">Get out</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/ie10-viewport-bug-workaround.js}"></script>
+</body>
+</html>

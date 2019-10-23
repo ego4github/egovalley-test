@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/ego-small.png}">
+    <title>EgoValley</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link th:href="@{static/css/cover.css}" rel="stylesheet">
+    <link th:href="@{static/css/magic-ice.css}" rel="stylesheet">
+    <link th:href="@{static/css/footer.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <!-- 头 -->
+                <!--<div id="ctrl-header">
+                    <div th:replace="common/header :: myHeader"></div>
+                </div>-->
+
+                <!-- 体 -->
+                <div id="ctrl-body">
+                    <!-- 在线聊天 -->
+                    <div align="center">
+                        <table>
+                            <tr align="center">
+                                <td>
+                                    <img th:src="@{static/images/magic-ice-small.png}" alt="" >
+                                    <h3 style="font-size: 18px"><strong>~~~ 爱的魔力转圈圈 ~~~</strong></h3>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td><!-- 聊天框 -->
+                                    <div id="messages">
+                                        <span style="color: red;"><strong>·>&nbsp;&nbsp;&nbsp;&nbsp;</strong>欢迎使用神奇小冰 (๑•̀ㅂ•́)و✧ 小冰目前处于智障阶段, 相信小冰将来会越来越智能滴 ヽ(✿ﾟ▽ﾟ)ノ 咳咳...目前小冰只能进行简单的智障交流, 比如 "你好"、"吃了吗"、"早安"、"晚安"、"小冰我爱你" 呦 (○｀ 3′○)<hr/></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center"><!-- 输入框 -->
+                                    <br/>
+                                    <input type="text" name="sendText" id="sendText" style="height: 35px;" autofocus/>
+                                    <strong> > </strong>
+                                    <button type="button" id="sendButton" class="btn btn-default navbar-btn" onclick="sendIce()" style="color: #6bc0e0; font-weight: bold;">发送</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <hr style="width: 80%;"/>
+                        <!--<br/>-->
+                    </div>
+                    <button type="button" class="btn btn-default navbar-btn" onclick="outIce()" style="color: #6bc0e0; font-weight: bold;">小冰再见</button>
+                </div>
+
+                <!--<h1>
+                    实时监测input中值的变化
+                </h1>
+                <input type="text" id="username" autoComplete='off'>
+                <div id="result"></div>-->
+
+
+                <!-- 尾 -->
+                <!--<div id="ctrl-footer" style="position: fixed; bottom: 0; width: 100%;">
+                    <div th:replace="common/footer :: myFooter"></div>
+                </div>-->
+
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/ie10-viewport-bug-workaround.js}"></script>
+    <script th:src="@{static/js/common.js}"></script>
+    <script th:src="@{static/js/header.js}"></script>
+    <script th:src="@{static/js/magic-ice.js}"></script>
+    <!--<script>
+        let randomH = Math.floor(Date.now() / 1000) + "";
+        let e = document.getElementsByTagName("script")[5];
+        let d = document.createElement("script");
+        d.src = "../static/js/chat.js?d=" + randomH;
+        d.type = "text/javascript";
+        d.async = true;
+        d.defer = true;
+        e.parentNode.insertBefore(d, e);
+    </script>-->
+</body>
+</html>

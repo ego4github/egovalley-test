@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/ego-small.png}">
+    <title>EgoValley</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/cover.css}" rel="stylesheet">
+    <link th:href="@{static/css/footer.css}" rel="stylesheet">
+</head>
+
+<body>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+
+            <!-- 头 -->
+            <div id="ctrl-header">
+                <div th:replace="common/header :: myHeader"></div>
+            </div>
+
+            <!-- 体 -->
+
+
+            <!-- 尾 -->
+            <div id="ctrl-footer" style="position: fixed; bottom: 0; width: 100%;">
+                <div th:replace="common/footer :: myFooter"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+<script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+<script th:src="@{static/js/common.js}"></script>
+<script th:src="@{static/js/header.js}"></script>
+<script th:src="@{static/js/index.js}"></script>
+</body>
+</html>

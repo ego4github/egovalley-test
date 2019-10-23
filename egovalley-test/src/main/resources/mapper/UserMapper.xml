@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mapper.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.egovalley.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.egovalley.domain.EgoUser">
+        <id column="ID_USER" property="idUser" jdbcType="INTEGER"/>
+        <result column="USER_CODE" property="userCode" jdbcType="VARCHAR"/>
+        <result column="USER_STATUS" property="userStatus" jdbcType="VARCHAR"/>
+        <result column="EGO_USERNAME" property="egoUsername" jdbcType="VARCHAR"/>
+        <result column="EGO_PASSWORD" property="egoPassword" jdbcType="VARCHAR"/>
+        <result column="EGO_NICKNAME" property="egoNickname" jdbcType="VARCHAR"/>
+        <result column="EGO_GENDER" property="egoGender" jdbcType="VARCHAR"/>
+        <result column="EGO_BIRTHDAY" property="egoBirthday" jdbcType="VARCHAR"/>
+        <result column="EGO_PHONE" property="egoPhone" jdbcType="VARCHAR"/>
+        <result column="EGO_EMAIL" property="egoEmail" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="CREATOR" property="creator" jdbcType="VARCHAR"/>
+        <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="LAST_UPDATOR" property="lastUpdator" jdbcType="VARCHAR"/>
+        <result column="IS_DELETE" property="isDelete" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID_USER, USER_CODE, USER_STATUS, EGO_USERNAME, EGO_PASSWORD, EGO_NICKNAME, EGO_GENDER, EGO_BIRTHDAY, EGO_PHONE, EGO_EMAIL,
+        CREATE_TIME, CREATOR, LAST_UPDATE_TIME, LAST_UPDATOR, IS_DELETE
+    </sql>
+
+    <!-- 用户登录 -->
+    <select id="selectUserByUsernameAndPassword" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ego_user
+        WHERE EGO_USERNAME = #{username,jdbcType=VARCHAR}
+          AND EGO_PASSWORD = #{password,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 用户注册 -->
+    <insert id="insertUser" parameterType="com.egovalley.domain.EgoUser">
+        INSERT INTO `ego_user` (
+            `USER_CODE`,
+            `USER_STATUS`,
+            `EGO_USERNAME`,
+            `EGO_PASSWORD`,
+            `EGO_NICKNAME`,
+            `EGO_GENDER`,
+            `EGO_BIRTHDAY`,
+            `EGO_PHONE`,
+            `EGO_EMAIL`,
+            `CREATE_TIME`,
+            `CREATOR`,
+            `LAST_UPDATE_TIME`,
+            `LAST_UPDATOR`,
+            `IS_DELETE`
+        )
+        VALUES
+            (
+                #{userCode,jdbcType=VARCHAR},
+                #{userStatus,jdbcType=VARCHAR},
+                #{egoUsername,jdbcType=VARCHAR},
+                #{egoPassword,jdbcType=VARCHAR},
+                #{egoNickname,jdbcType=VARCHAR},
+                #{egoGender,jdbcType=VARCHAR},
+                #{egoBirthday,jdbcType=VARCHAR},
+                #{egoPhone,jdbcType=VARCHAR},
+                #{egoEmail,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP},
+                #{creator,jdbcType=VARCHAR},
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+                #{lastUpdator,jdbcType=VARCHAR},
+                #{isDelete,jdbcType=VARCHAR}
+            );
+    </insert>
+</mapper>

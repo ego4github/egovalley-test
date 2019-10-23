@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="a"/>
+    <button id="b" onclick="audioTest()">buttonB</button>
+    <button id="c">停止</button>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/common.js}"></script>
+    <script type="text/javascript">
+        window.AudioContext || window.webKit
+        let audioContext = new AudioContext();
+        audioContext.decodeAudioData();
+        console.log("audioContext -> " + audioContext);
+        function audioTest() {
+            console.log(navigator.getUserMedia);
+            if (navigator.getUserMedia) {
+                console.log("可以用?");
+            } else {
+                console.log("不能用")
+            }
+        }
+    </script>
+</body>
+</html>

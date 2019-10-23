@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<div th:fragment="myHeader">
+    <div class="header">
+        <div class="masthead clearfix">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li style="font-size: 18px">今日访问量:<span id="dailyCount"></span></li>
+                                <li style="font-size: 18px">总访问量:<span id="totalCount"></span></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-xs-12 col-md-4">
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="javascript:;" id="header_say">投币</a></li>
+                                <li><a href="javascript:;" id="header_hello">关注</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

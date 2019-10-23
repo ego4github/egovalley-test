@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/ego-small.png}">
+    <title>EgoValley</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link th:href="@{static/css/cover.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <div class="success-msg">
+                    <h2 id="success-msg-h3">注册成功，3秒后跳转至登录页！</h2>
+                    <h3 style="display: inline;">如果失败，</h3>
+                    <a href="javascript:;" style="color: #fc6663; font-size: 24px" onclick="toLoginPage()">点我跳转</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/ie10-viewport-bug-workaround.js}"></script>
+    <script>
+        $(function () {
+            setTimeout("top.location.href = '" + "login" + "'", 3000);
+        });
+        function toLoginPage() {
+            location.href = "login";
+        }
+    </script>
+</body>
+</html>

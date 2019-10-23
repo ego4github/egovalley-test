@@ -1,0 +1,24 @@
+# 基础配置文件
+server:
+  port: 10086
+  servlet:
+    context-path: /egovalley
+  tomcat:
+    max-http-header-size: 8192
+    uri-encoding: UTF-8
+spring:
+  profiles:
+    active: dev, redis
+  mvc:
+    static-path-pattern: /static/**
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  devtools:
+    livereload:
+      enabled: false # 关闭热部署
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.egovalley.domain
