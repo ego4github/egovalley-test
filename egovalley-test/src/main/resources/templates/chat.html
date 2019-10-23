@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/ego-small.png}">
+    <title>EgoValley</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link th:href="@{static/css/cover.css}" rel="stylesheet">
+    <link th:href="@{static/css/chat.css}" rel="stylesheet">
+    <link th:href="@{static/css/footer.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <!-- 头 -->
+                <!--<div id="ctrl-header">
+                    <div th:replace="common/header :: myHeader"></div>
+                </div>-->
+
+                <!-- 体 -->
+                <div id="ctrl-body">
+                    <hr style="width: 80%;"/>
+                    <span style="font-size: 18px">欢迎</span>
+                    &nbsp;&nbsp;
+                    <span style="font-size: 18px" id="chat-nickname"></span>
+                    &nbsp;&nbsp;
+                    <span style="font-size: 18px" id="chat-gender"></span>
+
+                    <!-- 在线聊天 -->
+                    <div align="center">
+                        <input id="webSocketUrl" name="webSocketUrl" type="hidden" th:value="${webSocketUrl}"/>
+                        <table>
+                            <tr align="center">
+                                <td><!-- 聊天框 -->
+                                    <!--<div id="messages" style="overflow:auto; height: 120px; width: 450px; border: 1px solid #666; text-align: left"></div>-->
+                                    <div id="messages"></div>
+                                </td>
+                                <!--<td>&lt;!&ndash; 在线列表 &ndash;&gt;
+                                    <div id="online_users"></div>
+                                </td>-->
+                            </tr>
+                            <tr>
+                                <td align="center"><!-- 输入框 -->
+                                    <br/>
+                                    <input type="text" name="sendText" id="sendText" style="height: 35px;" autofocus/>
+                                    <strong> > </strong>
+                                    <button type="button" id="sendButton" class="btn btn-default navbar-btn" onclick="send()" style="color: #6bc0e0; font-weight: bold;">发送</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <hr style="width: 80%;"/>
+                        <!--<br/>-->
+                    </div>
+                    <button type="button" class="btn btn-default navbar-btn" onclick="outChat()" style="color: #6bc0e0; font-weight: bold;">残忍退出</button>
+                </div>
+
+                <!-- 尾 -->
+                <!--<div id="ctrl-footer" style="position: fixed; bottom: 0; width: 100%;">
+                    <div th:replace="common/footer :: myFooter"></div>
+                </div>-->
+
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/ie10-viewport-bug-workaround.js}"></script>
+    <script th:src="@{static/js/common.js}"></script>
+    <script th:src="@{static/js/header.js}"></script>
+    <script th:src="@{static/js/chat.js}"></script>
+    <!--<script>
+        let randomH = Math.floor(Date.now() / 1000) + "";
+        let e = document.getElementsByTagName("script")[5];
+        let d = document.createElement("script");
+        d.src = "../static/js/chat.js?d=" + randomH;
+        d.type = "text/javascript";
+        d.async = true;
+        d.defer = true;
+        e.parentNode.insertBefore(d, e);
+    </script>-->
+    <script type="text/javascript">
+        // 滚动条测试
+        function addMessage(message){
+            let chatArea=document.getElementById("messages");
+            chatArea.innerHTML += message+ '<br />';
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+        function sendMessage(){
+            let msg = document.getElementById("msg").value;
+            addMessage(msg);
+        }
+
+        let websocket = null,
+            sendText = $("#sendText"),
+            webSocketUrl = $("#webSocketUrl").val();
+
+        function connectWebSocket(nickname) {
+            // 判断当前浏览器是否支持WebSocket
+            if ('WebSocket' in window) {
+                websocket = new WebSocket(webSocketUrl + "/egovalley/chatWebSocket/" + nickname);
+            } else {
+                alert('Not support websocket');
+            }
+            // 连接发生错误的回调方法
+            websocket.onerror = function () {
+                setMessageInnerHTML("error233");
+            };
+            // 连接成功建立的回调方法
+            websocket.onopen = function (event) {
+                /*getOnlineUsers();*/
+                welcomeToAll();
+                // setMessageInnerHTML("欢迎" + nickname + "进入聊天室!");
+            };
+            // 接收到消息的回调方法
+            websocket.onmessage = function (event) {
+                setMessageInnerHTML(event.data);
+            };
+            // 连接关闭的回调方法
+            websocket.onclose = function () {
+                // goodbyeToAll();
+                // setMessageInnerHTML("欢迎再来勾搭~");
+            };
+            // 监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+            window.onbeforeunload = function () {
+                websocket.close();
+            }
+        }
+
+        // 将消息显示在网页上
+        function setMessageInnerHTML(innerHTML) {
+            let chatArea = document.getElementById("messages");
+            chatArea.innerHTML += innerHTML + '<br />';
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        // 关闭连接
+        function closeWebSocket() {
+            websocket.close();
+        }
+
+        // 发送消息
+        function send() {
+            let message = document.getElementById('sendText').value;
+            if ("" == message || message == null) {
+                alert("说点什么吧");
+                return;
+            }
+            websocket.send(message);
+            sendText.val("");
+            sendText.focus();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" th:href="@{static/images/joker.png}">
+    <title>Joker</title>
+    <link th:href="@{static/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{static/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+    <link th:href="@{static/css/joke.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <div class="inner cover" id="cover_game_over">
+                    <h1 class="cover-heading">U! R! Here! Again!</h1>
+                    <p class="lead">See I told you so. You will never go back~ Do it yourself now.</p>
+                    <p class="lead">jajaja...</p>
+                    <p class="lead">
+                        <p id="game_over" class="btn btn-lg btn-default">Game Over</p>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{static/js/common.js}"></script>
+    <script th:src="@{static/js/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/ie10-viewport-bug-workaround.js}"></script>
+    <script type="text/javascript">
+        let path = commonObj.basePath + "/static/images/cxk.jpg";
+        let val = "<img src=\"" + path + "\">";
+        $("#game_over").click(function () {
+           $("#cover_game_over").html(val);
+        });
+    </script>
+</body>
+</html>

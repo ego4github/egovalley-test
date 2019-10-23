@@ -1,0 +1,19 @@
+.header {
+    /*background-color: antiquewhite;*/
+}
+
+.counts {
+    display: inline;
+    color: #ffffff;
+}
+
+.functions {
+    display: inline;
+    color: #ffffff;
+    float: right;
+    /*cursor: pointer;*/
+}
+
+#blank {
+    float: right;
+}
