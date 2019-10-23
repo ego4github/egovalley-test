@@ -25,7 +25,7 @@ public class InitThreadTest implements Runnable {
             while (true) {
                 if (endFlag > 10) {
                     System.out.println("这里有点不一样");
-                    System.out.println("再来点");
+                    System.out.println("再来点33");
                     System.out.println("さょぅなち");
                     break;
                 }
