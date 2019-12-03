@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #messages {
+            margin-top: 40px;
+            border: 1px solid black;
+            background-color: white;
+            padding: 20px;
+            overflow:auto;
+            height: 300px;
+            width: 400px;
+            text-align: left;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input id="webSocketUrl" name="webSocketUrl" type="hidden" th:value="${webSocketUrl}"/>
+        <audio controls autoplay></audio>
+        <input type="button" value="录音" onclick="startRecording()"/>
+        <input type="button" value="停止" onclick="stopRecording()"/>
+        <input type="button" value="播放" onclick="playRecording()"/>
+        <input type="button" value="提交" onclick="uploadAudio()"/>
+        <input type="button" value="写文件" onclick="writeFile()"/>
+    </div>
+
+    <div id="messages"></div>
+
+    <script type="text/javascript" th:src="@{static/js/jquery-1.11.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/common.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/HZRecorder.js}"></script>
+    <script type="text/javascript">
+        let webSocket;
+        let sessionId;
+        $(function () {
+            let webSocketUrl = $("#webSocketUrl").val();
+            connectWebSocket(webSocketUrl);
+        });
+
+        let recorder;
+        let audio = document.querySelector('audio');
+
+        function startRecording() {
+            HZRecorder.get(function (rec) {
+                recorder = rec;
+                recorder.start();
+            });
+        }
+        function stopRecording() {
+            recorder.stop();
+        }
+        function playRecording() {
+            recorder.play(audio);
+        }
+        function uploadAudio() {
+            recorder.upload(sessionId, commonObj.basePath + '/asr/asrPart', function (state, e) {
+                switch (state) {
+                    case 'uploading':
+                        // var percentComplete = Math.round(e.loaded * 100 / e.total) + '%';
+                        break;
+                    case 'ok':
+                        // console.log(e.target.responseText);
+                        console.log('上传成功');
+                        // window.location.href = commonObj.basePath + '/asr/asrPart';
+                        break;
+                    case 'error':
+                        console.log('上传失败');
+                        break;
+                    case 'cancel':
+                        console.log('上传被取消');
+                        break;
+                }
+            });
+        }
+
+        function connectWebSocket(webSocketUrl) {
+            sessionId = _uuid();
+            // 判断当前浏览器是否支持WebSocket
+            if ('WebSocket' in window) {
+                webSocket = new WebSocket(webSocketUrl + "/egovalley/webSocket/" + sessionId);
+
+            } else {
+                alert('Not support websocket');
+            }
+            // 连接发生错误的回调方法
+            webSocket.onerror = function () {
+            };
+            // 连接成功建立的回调方法
+            webSocket.onopen = function (event) {
+                console.log(">>> 已连接 sessionId = " + sessionId);
+            };
+            // 接收到消息的回调方法
+            webSocket.onmessage = function (e) {
+                console.log(">>> 收到数据: " + e);
+                let _data = JSON.parse(e.data);
+                console.log(">>> json一下: " + _data);
+                setMessageInnerHTML(_data.result);
+                // setMessageInnerHTML(_data.text);
+            };
+            // 连接关闭的回调方法
+            webSocket.onclose = function () {
+            };
+            // 监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+            window.onbeforeunload = function () {
+                webSocket.close();
+            };
+        }
+
+        // 发送消息
+        function send(message) {
+            if (webSocket.readyState === 1) {
+                webSocket.send(message);
+            }
+        }
+
+        // 将消息显示在网页上
+        function setMessageInnerHTML(innerHTML) {
+            let chatArea = document.getElementById("messages");
+            chatArea.innerHTML += innerHTML + '<br />';
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function writeFile() {
+            $.ajax({
+                type: 'POST',
+                url: commonObj.basePath + '/asr/writeFile',
+                data: "123",
+                dataType : 'JSON',
+                cache : false, // 不缓存
+                processData: false,   // jQuery不要去处理发送的数据
+                contentType: false,   // jQuery不要去设置Content-Type请求头
+                success: function(res){
+                    console.log(res);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
