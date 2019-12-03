@@ -38,7 +38,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
                 "/surprise",
                 "/welcome",
                 "/test/**",
-                "/asr-test"
+                "/asr-test",
+                "/asr-test2",
+                "/asr/**",
+                "/error/**",
+                "/excel/**"
         );
     }
 

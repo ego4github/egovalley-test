@@ -1,6 +1,6 @@
 package com.egovalley.web;
 
-import com.egovalley.common.CommonsDataPool;
+import com.egovalley.common.CommonsThreadPool;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -90,8 +90,8 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-websocket:2.0.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.0.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-websocket:5.0.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba.nls:nls-sdk-long-asr:2.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba.nls:nls-sdk-common:2.0.3" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba.nls:nls-sdk-transcriber:2.1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba.nls:nls-sdk-common:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.41" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.25.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.25.Final" level="project" />
@@ -100,5 +100,18 @@
     <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.25.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.25.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.25.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba.nls:nls-sdk-tts:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
+    <orderEntry type="library" name="Maven: org.java-websocket:Java-WebSocket:1.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml-schemas:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.18" level="project" />
+    <orderEntry type="library" name="Maven: com.github.virtuald:curvesapi:1.05" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-math3:3.6.1" level="project" />
   </component>
 </module>

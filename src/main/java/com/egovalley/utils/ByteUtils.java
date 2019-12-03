@@ -1,9 +1,28 @@
 package com.egovalley.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
+@Component
 public class ByteUtils {
+
+    private static final Logger logger = LoggerFactory.getLogger(ByteUtils.class);
+    public static ExecutorService executorService;
+
+    @PostConstruct
+    private void initTest() {
+        System.out.println(">>> =============哎哟我去==============");
+        logger.info(">>> =============哎哟我去==============");
+    }
 
     /**
      * 应用场景:
@@ -31,7 +50,7 @@ public class ByteUtils {
      *    调用上一个方法后获得的 List<byte[]> 数据, 可以调用此方法
      *    获得 byte[] 数据后, 就可以扔给模型进行音转字了
      */
-    public byte[] getByteArrayByByteList(List<byte[]> byteList) {
+    public static byte[] getByteArrayByByteList(List<byte[]> byteList) {
         int byteListLength = 0;
         for (byte[] thisByteList : byteList) {
             byteListLength += thisByteList.length;
@@ -49,7 +68,7 @@ public class ByteUtils {
      * 应用场景:
      *      将上两个方法结合, 一次调用获得 byte[] 数据格式
      */
-    public byte[] getByteArrayByListInt8(List<List<Integer>> int8List) {
+    public static byte[] getByteArrayByListInt8(List<List<Integer>> int8List) {
         // 将 List<List<Integer>> 数据转换成 List<byte[]> 数据
         List<byte[]> byteList = new ArrayList<>();
         for (List<Integer> thisInt8List : int8List) {
@@ -74,6 +93,24 @@ public class ByteUtils {
             countLength += thisByteList.length;
         }
         return resultBytes;
+    }
+
+    /**
+     * 线程写文件
+     */
+    public static void writeFile(byte[] bytes, String path) {
+        executorService.execute(() -> {
+//            try {
+//                File file = new File(path);
+//                FileOutputStream fos = new FileOutputStream(file, true);
+//                fos.write(bytes, 0, bytes.length);
+//                fos.flush();
+//                fos.close();
+//            } catch (IOException e) {
+//                logger.error(">>> 线程写文件异常", e);
+//            }
+            System.out.println("假的写文件");
+        });
     }
 
 }

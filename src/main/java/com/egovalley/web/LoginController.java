@@ -1,6 +1,6 @@
 package com.egovalley.web;
 
-import com.egovalley.common.ChatWebSocket;
+import com.egovalley.common.WebSocketComponent;
 import com.egovalley.domain.EgoUser;
 import com.egovalley.service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
     @Autowired
-    private ChatWebSocket chatWebSocket;
+    private WebSocketComponent webSocketComponent;
 
     /**
      * 用户登录
@@ -42,7 +41,7 @@ public class LoginController {
         try {
             String username = request.getParameter("inputUsername");
             String password = request.getParameter("inputPassword");
-            if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
                 resultMap.put("resCode", 300);
                 resultMap.put("resMsg", "系统繁忙, 请稍后再试!");
                 return resultMap;
@@ -79,7 +78,7 @@ public class LoginController {
         try {
             String username = request.getParameter("inputUsername");
             String password = request.getParameter("inputPassword");
-            if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
                 resultMap.put("resCode", 300);
                 resultMap.put("resMsg", "系统繁忙, 请稍后再试!");
                 return resultMap;
@@ -156,7 +155,7 @@ public class LoginController {
     @RequestMapping("/getOnlineUsers")
     @ResponseBody
     public List<String> getOnlineUsers() {
-        List<String> onlineUsers = chatWebSocket.getOnlineUsers();
+        List<String> onlineUsers = webSocketComponent.getOnlineUsers();
         return onlineUsers;
     }
 
@@ -167,7 +166,7 @@ public class LoginController {
     @RequestMapping("/welcomeToAll")
     @ResponseBody
     public void welcomeToAll() {
-        chatWebSocket.broadcast(1);
+        webSocketComponent.broadcast(1);
     }
 
     /**
@@ -177,7 +176,7 @@ public class LoginController {
     @RequestMapping("/goodbyeToAll")
     @ResponseBody
     public void goodbyeToAll() {
-        chatWebSocket.broadcast(2);
+        webSocketComponent.broadcast(2);
     }
 
 }

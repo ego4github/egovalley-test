@@ -98,4 +98,17 @@ public class PageController {
         return "asr-test";
     }
 
+    @RequestMapping("/asr-test2")
+    public ModelAndView asrTest2(HttpServletRequest request, ModelAndView mv) {
+        String url = request.getScheme();
+        logger.info(">>> webSocket协议: " + url);
+        mv.setViewName("asr-test2");
+        if (!url.contains("https")) {
+            mv.addObject("webSocketUrl", wsWebSocketUrl);
+        } else {
+            mv.addObject("webSocketUrl", wssWebSocketUrl);
+        }
+        return mv;
+    }
+
 }

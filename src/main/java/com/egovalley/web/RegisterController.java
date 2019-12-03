@@ -115,7 +115,7 @@ public class RegisterController {
             } else if ("2".equals(flag)) {// flag = 2, 登录模板
                 templateCode = Constant.TEMPLATE_CODE_LOGIN;
             }
-            if (StringUtils.isEmpty(templateCode)) {
+            if (StringUtils.isBlank(templateCode)) {
                 resultMap.put("resCode", 300);
                 resultMap.put("resMsg", "系统繁忙, 请稍后再试!");
                 return resultMap;

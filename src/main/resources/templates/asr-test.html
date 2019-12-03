@@ -12,7 +12,7 @@
     <script th:src="@{static/js/jquery-1.11.3.min.js}"></script>
     <script th:src="@{static/js/common.js}"></script>
     <script type="text/javascript">
-        window.AudioContext || window.webKit
+        window.AudioContext || window.webKit;
         let audioContext = new AudioContext();
         audioContext.decodeAudioData();
         console.log("audioContext -> " + audioContext);

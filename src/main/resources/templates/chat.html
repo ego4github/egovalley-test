@@ -107,7 +107,7 @@
         function connectWebSocket(nickname) {
             // 判断当前浏览器是否支持WebSocket
             if ('WebSocket' in window) {
-                websocket = new WebSocket(webSocketUrl + "/egovalley/chatWebSocket/" + nickname);
+                websocket = new WebSocket(webSocketUrl + "/egovalley/webSocket/" + nickname);
             } else {
                 alert('Not support websocket');
             }

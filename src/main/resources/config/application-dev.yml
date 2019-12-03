@@ -28,13 +28,25 @@ ws:
   webSocketUrl: ws://127.0.0.1:10086
 wss:
   webSocketUrl: wss://127.0.0.1:443
-commonsDataPool:
-  dequePoolSize: 200 # 队列大小
-  threadInSize: 2 # 入线程数
-  threadOutSize: 2 # 出线程数
-  threadDataSize: 6 # 线程同时执行数
+commonsThreadPool:
+  dequePoolSize: 2000 # 队列大小
+  threadInSize: 6 # 入线程数
+  threadOutSize: 6 # 出线程数
+  threadDataSize: 12 # 线程同时执行数
   inPoolLimitMillisecond: 3
 init:
   thread:
     key1: value1
     key2: value2
+ali:
+  asr:
+    AppKey: PyaYTCNZGdPipX2Y
+    AccessKeyId: LTAIc46qdfSjTCZY
+    AccessKeySecret: MGzJxGjpo4tzYHk5O44U5JJEkO2nQS
+    NlsUrl: wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1
+    count: 20
+    preFileSavePath: E:\\lky\\writeFileTest\\
+    # preFileSavePath: /data/webApp/fileTemp/
+    sufFileSavePath: .pcm
+  tts:
+    AppKey: m2mbAr79dyzWl70W

@@ -1,6 +1,6 @@
 package com.egovalley.web;
 
-import com.egovalley.common.ChatWebSocket;
+import com.egovalley.common.WebSocketComponent;
 import com.egovalley.domain.EgoUser;
 import com.egovalley.service.UserService;
 import org.apache.commons.lang3.StringUtils;

@@ -12,6 +12,8 @@ spring:
   mvc:
     static-path-pattern: /static/**
   http:
+    multipart:
+      enabled: false
     encoding:
       force: true
       charset: UTF-8

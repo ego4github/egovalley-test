@@ -14,25 +14,25 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Component
-public class CommonsDataPool {
+public class CommonsThreadPool {
 
-    private static final Logger logger = LoggerFactory.getLogger(CommonsDataPool.class);
-    private static CommonsDataPool commonsDataPool;
+    private static final Logger logger = LoggerFactory.getLogger(CommonsThreadPool.class);
+    private static CommonsThreadPool commonsThreadPool;
     private LinkedBlockingDeque<Object> linkedBlockingDeque;
     private ExecutorService threadInPool;
     private ExecutorService threadOutPool;
     private ThreadPoolExecutor threadDataPool;
     private Integer threadOutPoolCount = 0;
 
-    @Value("${commonsDataPool.dequePoolSize}")
+    @Value("${commonsThreadPool.dequePoolSize}")
     private String dequePoolSize;
-    @Value("${commonsDataPool.threadInSize}")
+    @Value("${commonsThreadPool.threadInSize}")
     private String threadInSize;
-    @Value("${commonsDataPool.threadOutSize}")
+    @Value("${commonsThreadPool.threadOutSize}")
     private String threadOutSize;
-    @Value("${commonsDataPool.threadDataSize}")
+    @Value("${commonsThreadPool.threadDataSize}")
     private String threadDataSize;
-    @Value("${commonsDataPool.inPoolLimitMillisecond}")
+    @Value("${commonsThreadPool.inPoolLimitMillisecond}")
     private String inPoolLimitMillisecond;
 
     @Autowired
@@ -40,22 +40,22 @@ public class CommonsDataPool {
 
     @PostConstruct
     public void createLinkedBlockingDeque() {
-        commonsDataPool = this;
-        commonsDataPool.setLinkedBlockingDeque(new LinkedBlockingDeque<>(Integer.valueOf(dequePoolSize)));
-        commonsDataPool.setThreadInPool(Executors.newFixedThreadPool(Integer.valueOf(threadInSize)));
-        commonsDataPool.setThreadOutPool(Executors.newFixedThreadPool(Integer.valueOf(threadOutSize)));
-        commonsDataPool.setThreadDataPool((ThreadPoolExecutor) Executors.newFixedThreadPool(Integer.valueOf(threadDataSize)));
-        commonsDataPool.outPoolRemoveLast();
+        commonsThreadPool = this;
+        commonsThreadPool.setLinkedBlockingDeque(new LinkedBlockingDeque<>(Integer.valueOf(dequePoolSize)));
+        commonsThreadPool.setThreadInPool(Executors.newFixedThreadPool(Integer.valueOf(threadInSize)));
+        commonsThreadPool.setThreadOutPool(Executors.newFixedThreadPool(Integer.valueOf(threadOutSize)));
+        commonsThreadPool.setThreadDataPool((ThreadPoolExecutor) Executors.newFixedThreadPool(Integer.valueOf(threadDataSize)));
+//        commonsThreadPool.outPoolRemoveLast();
     }
 
     // 获取池对象
-    public static CommonsDataPool getCommonsDataPool() {
-        return commonsDataPool;
+    public static CommonsThreadPool getCommonsThreadPool() {
+        return commonsThreadPool;
     }
 
-    private void addFirst(Object object) {
+    private void addFirst(Object object, LinkedBlockingDeque<Object> deque) {
         try {
-            linkedBlockingDeque.putFirst(object);
+            deque.putFirst(object);
         } catch (InterruptedException e) {
             logger.error(">>> addFirst 链表已满", e);
             outPoolRemoveLast();
@@ -91,17 +91,22 @@ public class CommonsDataPool {
         return object;
     }
 
-    public void inPoolAddFirst(Object object) {
+    public void inPoolAddFirst(Object object, LinkedBlockingDeque<Object> deque) {
         if (object == null) {
             logger.info(">>> inPoolAddFirst object is null");
             return;
         }
-        try {
-            Thread.sleep(Integer.valueOf(inPoolLimitMillisecond));
-        } catch (InterruptedException e) {
-            logger.error(">>> inPoolAddFirst sleep 异常", e);
+        if (deque == null) {
+            logger.info(">>> inPoolAddFirst deque is null");
+            return;
         }
-        threadInPool.execute(() -> commonsDataPool.addFirst(object));
+//        try {
+//            Thread.sleep(Integer.valueOf(inPoolLimitMillisecond));
+//        } catch (InterruptedException e) {
+//            logger.error(">>> inPoolAddFirst sleep 异常", e);
+//        }
+//        threadInPool.execute(() -> commonsThreadPool.addFirst(object, deque));
+        commonsThreadPool.addFirst(object, deque);
     }
 
     public void inPoolAddLast(Object object) {
@@ -114,11 +119,12 @@ public class CommonsDataPool {
         } catch (InterruptedException e) {
             logger.error(">>> inPoolAddLast sleep 异常", e);
         }
-        threadInPool.execute(() -> commonsDataPool.addLast(object));
+        threadInPool.execute(() -> commonsThreadPool.addLast(object));
+//        commonsThreadPool.addLast(object);
     }
 
     public void outPoolRemoveFirst() {
-        Boolean countFlag = commonsDataPool.addOutPoolCount();
+        Boolean countFlag = commonsThreadPool.addOutPoolCount();
         if (!countFlag) {
             logger.info(">>> outPoolRemoveFirst 获取队列数据的线程池已满");
             return;
@@ -126,7 +132,7 @@ public class CommonsDataPool {
         threadOutPool.execute(() -> {
             while (true) {
                 try {
-                    Object removeFirstObj = commonsDataPool.removeFirst();// 阻塞方法, 如果为空就不走下面的方法, 停在这里
+                    Object removeFirstObj = commonsThreadPool.removeFirst();// 阻塞方法, 如果为空就不走下面的方法, 停在这里
                     if (removeFirstObj != null) {// 调用异步线程处理数据
                         System.out.println(">>> threadDataPool.getPoolSize = " + threadDataPool.getPoolSize() + "; getActiveCount = " + threadDataPool.getActiveCount());
                         while (threadDataPool.getActiveCount() == 6) {// 达到最大线程数就等待
@@ -135,7 +141,7 @@ public class CommonsDataPool {
                         }
                         threadDataPool.execute(() -> {
                             try {
-                                commonsDataPool.doSomething(removeFirstObj);
+                                commonsThreadPool.doSomething(removeFirstObj);
                             } catch (Exception e) {
                                 logger.error(">>> outPoolRemoveFirst 异步处理异常", e);
                             }
@@ -155,7 +161,7 @@ public class CommonsDataPool {
     }
 
     public void outPoolRemoveLast() {
-        Boolean countFlag = commonsDataPool.addOutPoolCount();
+        Boolean countFlag = commonsThreadPool.addOutPoolCount();
         if (!countFlag) {
             logger.info(">>> outPoolRemoveLast 获取队列数据的线程池已满 ");
             return;
@@ -163,7 +169,7 @@ public class CommonsDataPool {
         threadOutPool.execute(() -> {
             while (true) {
                 try {
-                    Object removeLastObj = commonsDataPool.removeLast();// 阻塞方法, 如果为空就不走下面的方法, 停在这里
+                    Object removeLastObj = commonsThreadPool.removeLast();// 阻塞方法, 如果为空就不走下面的方法, 停在这里
                     if (removeLastObj != null) {// 调用异步线程处理数据
                         System.out.println(">>> threadDataPool.getPoolSize = " + threadDataPool.getPoolSize() + "; getActiveCount = " + threadDataPool.getActiveCount());
                         while (threadDataPool.getActiveCount() == 6) {// 达到最大线程数就等待
@@ -172,7 +178,7 @@ public class CommonsDataPool {
                         }
                         threadOutPool.execute(() -> {
                             try {
-                                commonsDataPool.doSomething(removeLastObj);
+                                commonsThreadPool.doSomething(removeLastObj);
                             } catch (Exception e) {
                                 logger.error(">>> outPoolRemoveLast 异步处理异常", e);
                             }
@@ -203,8 +209,12 @@ public class CommonsDataPool {
         return true;
     }
 
-    private void setLinkedBlockingDeque(LinkedBlockingDeque<Object> linkedBlockingDeque) {
+    public void setLinkedBlockingDeque(LinkedBlockingDeque<Object> linkedBlockingDeque) {
         this.linkedBlockingDeque = linkedBlockingDeque;
+    }
+
+    public LinkedBlockingDeque<Object> getLinkedBlockingDeque() {
+        return linkedBlockingDeque;
     }
 
     private void setThreadInPool(ExecutorService threadInPool) {

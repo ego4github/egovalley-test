@@ -1,61 +1,69 @@
 package com.egovalley.common;
 
-import com.egovalley.utils.CacheUtils;
+import com.alibaba.fastjson.JSON;
+import com.egovalley.utils.JsonUtils;
+
+import java.util.*;
 
 public class MainTest {
 
     public static void main(String[] args) {
-        /*CommonsDataPool pool = CommonsDataPool.getCommonsDataPool();
-        System.out.println("pool = " + pool);
-//        pool.outPoolRemoveFirst();
-        for (int i = 0; i < 10; i++) {
-            pool.inPoolAddFirst(i);
-        }
-        pool.outPoolRemoveFirst();*/
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("key", "value");
+            byte[] bytes = new byte[] {1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5};
+            System.out.println("原始 bytes = " + Arrays.toString(bytes));
 
-        System.out.println("当前缓存量: " + CacheUtils.size());
-        System.out.println("添加缓存...");
-        CacheUtils.put("key1", "value1");
-        CacheUtils.put("key2", "value2");
-        CacheUtils.put("key3", "value3");
-        System.out.println("当前缓存量: " + CacheUtils.size());
-        System.out.println("key1 = " + CacheUtils.get("key1"));
-        CacheUtils.put("key1", "value1_changed");
-        System.out.println("重新对key1赋值...");
-        System.out.println("key1 = " + CacheUtils.get("key1"));
-        CacheUtils.remove("key1");
-        System.out.println("删除key1...");
-        System.out.println("key1 = " + CacheUtils.get("key1"));
-        System.out.println("当前缓存量: " + CacheUtils.size());
-        System.out.println("添加一个3秒过期的缓存...");
-        CacheUtils.put("expireKey", "expire3000", 3000);
-        System.out.println("当前缓存量: " + CacheUtils.size());
-        System.out.println("expireKey = " + CacheUtils.get("expireKey"));
-        try {
-            System.out.println("等待5秒...");
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
+            // Base64的传递方式
+            Base64.Encoder encoder = Base64.getEncoder();
+            String encodeBytes = encoder.encodeToString(bytes);
+            map.put("bytes", encodeBytes);
+            String baseJson = JsonUtils.objectToJson(map);
+            base64Test(baseJson);
+
+            // Arrays的传递方式
+            String arrBytes = Arrays.toString(bytes);
+            map.put("bytes", arrBytes);
+            String arrJson = JsonUtils.objectToJson(map);
+            arraysTest(arrJson);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("expireKey = " + CacheUtils.get("expireKey"));
-        System.out.println("当前缓存量: " + CacheUtils.size());
-        System.out.println("添加一个5秒过期的缓存...");
-        CacheUtils.put("expireKey2", "expire5000", 5000);
-        System.out.println("当前缓存量: " + CacheUtils.size());
-        System.out.println("expireKey2 = " + CacheUtils.get("expireKey2"));
+    }
+
+    private static void base64Test(String messages) {
         try {
-            System.out.println("等待2秒...");
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
+            long start = System.currentTimeMillis();
+            Map map = JsonUtils.jsonToMap(messages);
+            String bytes = (String) map.get("bytes");
+            Base64.Decoder decoder = Base64.getDecoder();
+            byte[] decodeBytes = decoder.decode(bytes);
+            byte[] encode = Base64.getEncoder().encode(decodeBytes);
+            System.out.println("base64的结果 = " + Arrays.toString(decodeBytes));
+            long end = System.currentTimeMillis();
+            System.out.println("base64耗时: " + (end - start) + " (毫秒)");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("删除expireKey2...");
-        CacheUtils.remove("expireKey2");
-        System.out.println("expireKey2 = " + CacheUtils.get("expireKey2"));
-        System.out.println("当前缓存量: " + CacheUtils.size());
-        System.out.println("清除所有缓存...");
-        CacheUtils.removeAll();
-        System.out.println("当前缓存量: " + CacheUtils.size());
+    }
+
+    private static void arraysTest(String messages) {
+        try {
+            long start = System.currentTimeMillis();
+            Map map = JsonUtils.jsonToMap(messages);
+            String bytes = (String) map.get("bytes");
+            List<Byte> objects = JSON.parseArray(bytes, Byte.class);
+            Byte[] bytes2 = objects.toArray(new Byte[objects.size()]);
+            byte[] bytes3 = new byte[bytes2.length];
+            for (int i = 0; i < bytes2.length; i++) {
+                bytes3[i] = bytes2[i];
+            }
+            System.out.println("arrays的结果 = " + Arrays.toString(bytes3));
+            long end = System.currentTimeMillis();
+            System.out.println("arrays耗时: " + (end - start) + " (毫秒)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

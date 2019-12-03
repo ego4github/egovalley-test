@@ -23,7 +23,7 @@ public class InitThreadTest implements Runnable {
                 StringUtils.isNotBlank(testKey2) && !"null".equals(testKey2)) {
             int endFlag = 1;
             while (true) {
-                if (endFlag > 10) {
+                if (endFlag > 3) {
                     System.out.println("さょぅなち");
                     break;
                 }

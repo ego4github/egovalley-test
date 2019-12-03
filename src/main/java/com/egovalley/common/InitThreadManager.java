@@ -1,6 +1,7 @@
 package com.egovalley.common;
 
 import com.egovalley.domain.InitThreadTest;
+import com.egovalley.utils.ByteUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executors;
 
 @Lazy(value = false)
 @Service
@@ -31,6 +33,10 @@ public class InitThreadManager {
         new Thread(new InitThreadTest(initThreadKey1, initThreadKey2)).start();
 //        new Thread(new InitThreadTest("" + paramMap.get("key1"), "" + paramMap.get("key3"))).start();
         logger.info(">>> 初始化线程任务完成...");
+
+        logger.info(">>> 来一个写文件的线程");
+        ByteUtils.executorService = Executors.newCachedThreadPool();
+        logger.info(">>> 来好了");
     }
 
 }
