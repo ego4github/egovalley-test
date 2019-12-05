@@ -20,8 +20,7 @@ public class ByteUtils {
 
     @PostConstruct
     private void initTest() {
-        System.out.println(">>> =============哎哟我去==============");
-        logger.info(">>> =============哎哟我去==============");
+        logger.info(">>> @PostConstruct test, must be @Component.");
     }
 
     /**
@@ -100,16 +99,15 @@ public class ByteUtils {
      */
     public static void writeFile(byte[] bytes, String path) {
         executorService.execute(() -> {
-//            try {
-//                File file = new File(path);
-//                FileOutputStream fos = new FileOutputStream(file, true);
-//                fos.write(bytes, 0, bytes.length);
-//                fos.flush();
-//                fos.close();
-//            } catch (IOException e) {
-//                logger.error(">>> 线程写文件异常", e);
-//            }
-            System.out.println("假的写文件");
+            try {
+                File file = new File(path);
+                FileOutputStream fos = new FileOutputStream(file, true);
+                fos.write(bytes, 0, bytes.length);
+                fos.flush();
+                fos.close();
+            } catch (IOException e) {
+                logger.error(">>> 线程写文件异常", e);
+            }
         });
     }
 

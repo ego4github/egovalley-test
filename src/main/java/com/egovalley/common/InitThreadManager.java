@@ -27,16 +27,11 @@ public class InitThreadManager {
     @PostConstruct
     private void initThread() {
         logger.info(">>> 开始初始化线程任务...");
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("key1", "value11");
-        paramMap.put("key2", "value22");
+        logger.info(">>> 综合测试线程...");
         new Thread(new InitThreadTest(initThreadKey1, initThreadKey2)).start();
-//        new Thread(new InitThreadTest("" + paramMap.get("key1"), "" + paramMap.get("key3"))).start();
-        logger.info(">>> 初始化线程任务完成...");
-
-        logger.info(">>> 来一个写文件的线程");
+        logger.info(">>> 异步写文件线程...");
         ByteUtils.executorService = Executors.newCachedThreadPool();
-        logger.info(">>> 来好了");
+        logger.info(">>> 初始化线程任务完成...");
     }
 
 }

@@ -34,7 +34,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- 指定SpringBoot启动类 -->
-                    <mainClass>com.egovalley.TestApplication</mainClass>
+                    <mainClass>com.egovalley.EgoValleyApplication</mainClass>
                     <executable>true</executable>
                     <!-- 开启热部署 -->
                     <fork>true</fork>
@@ -176,6 +176,7 @@
             <version>1.18</version>
         </dependency>-->
 
+        <!-- 操作excel -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -187,5 +188,18 @@
             <version>4.0.1</version>
         </dependency>
 
+        <!-- httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+        </dependency>
     </dependencies>
 </project>

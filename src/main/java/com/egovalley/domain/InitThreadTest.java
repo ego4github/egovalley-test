@@ -18,16 +18,15 @@ public class InitThreadTest implements Runnable {
 
     @Override
     public void run() {
-        logger.info("初始化测试线程...");
         if (StringUtils.isNotBlank(testKey1) && !"null".equals(testKey1) &&
                 StringUtils.isNotBlank(testKey2) && !"null".equals(testKey2)) {
             int endFlag = 1;
             while (true) {
                 if (endFlag > 3) {
-                    System.out.println("さょぅなち");
+                    logger.info(">>> さょぅなち");
                     break;
                 }
-                System.out.println(endFlag + ": testKey1 = " + testKey1 + "; testKey2 = " + testKey2);
+                logger.info(">>> " + endFlag + ": key1 = " + testKey1 + "; key2 = " + testKey2);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -36,7 +35,7 @@ public class InitThreadTest implements Runnable {
                 endFlag++;
             }
         } else {
-            System.out.println("我莫得感情");
+            logger.info(">>> 我莫得感情");
         }
     }
 }

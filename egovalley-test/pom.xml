@@ -34,7 +34,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- 指定SpringBoot启动类 -->
-                    <mainClass>com.egovalley.TestApplication</mainClass>
+                    <mainClass>com.egovalley.EgoValleyApplication</mainClass>
                     <executable>true</executable>
                     <!-- 开启热部署 -->
                     <fork>true</fork>

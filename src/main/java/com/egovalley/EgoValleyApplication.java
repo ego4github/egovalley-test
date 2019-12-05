@@ -13,10 +13,10 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {"com.egovalley"})
 @ServletComponentScan(basePackages = {"com.egovalley.web"})
 @SuppressWarnings("all")
-public class TestApplication extends SpringBootServletInitializer {
+public class EgoValleyApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class, args);
+        SpringApplication.run(EgoValleyApplication.class, args);
     }
 
     /**

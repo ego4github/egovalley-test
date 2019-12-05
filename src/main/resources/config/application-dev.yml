@@ -50,3 +50,8 @@ ali:
     sufFileSavePath: .pcm
   tts:
     AppKey: m2mbAr79dyzWl70W
+phone:
+  ownership:
+    url: https://cxyyb.zgpajf.com.cn/tempTest
+    fileDir: E:\\lky\\writeFileTest\\
+    suffix: .xlsx
