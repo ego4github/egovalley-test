@@ -10,7 +10,10 @@ public final class Constant {
     public static final String TEMPLATE_CODE_LOGIN = "SMS_164470381";
     // 短信签名-伊戈山谷
     public static final String SIGN_NAME_EGOVALLEY = "伊戈山谷";
-    // 短信签名-乐优商城
-    public static final String SIGN_NAME_LEYOU = "乐优商城";
+    // 字符编码
+    public static final String CHARSET_GBK = "GBK";
+    public static final String CHARSET_U8 = "UTF-8";
+    public static final String CHARSET_ISO = "ISO8859-1";
+
 
 }

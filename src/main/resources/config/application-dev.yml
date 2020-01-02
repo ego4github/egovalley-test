@@ -55,3 +55,6 @@ phone:
     url: https://cxyyb.zgpajf.com.cn/tempTest
     fileDir: E:\\lky\\writeFileTest\\
     suffix: .xlsx
+verify:
+  secret:
+    key: PipX2YWJxvSSTM6guXLTAIc46

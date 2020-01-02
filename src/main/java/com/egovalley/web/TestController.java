@@ -2,6 +2,9 @@ package com.egovalley.web;
 
 import com.egovalley.common.CommonsThreadPool;
 import com.egovalley.utils.CacheUtils;
+import com.egovalley.utils.VerifyTokenUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,12 @@ public class TestController {
     private LinkedBlockingDeque<Object> d1;
     private LinkedBlockingDeque<Object> d2;
     private LinkedBlockingDeque<Object> d3;
+
+    private static String secretKey;
+    @Value("${verify.secret.key}")
+    public void setSecretKey(String secretKey) {
+        TestController.secretKey = secretKey;
+    }
 
     @RequestMapping("/pool/{num}/{deque}")
     @ResponseBody
@@ -68,6 +77,33 @@ public class TestController {
             System.out.println("--------------------------------");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @RequestMapping("/verify")
+    public void verifyTest() {
+        System.out.println("secretKey = " + secretKey);
+        String randomCode = RandomStringUtils.randomAlphanumeric(16);
+        System.out.println("randomCode = " + randomCode);
+        long startTime = System.currentTimeMillis() + 998 * 66 * 3;
+        String token1 = VerifyTokenUtils.createTokenBySHA(secretKey, randomCode, startTime);
+        System.out.println("token1 = " + token1);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long endTime = System.currentTimeMillis() + 998 * 66 * 3;
+        String token2 = VerifyTokenUtils.createTokenBySHA(secretKey, randomCode, startTime);
+        System.out.println("token2 = " + token2);
+        long costTime = (endTime - startTime) / 1000;
+        System.out.println("costTime = " + costTime);
+        if (costTime > 3) {
+            System.out.println("请求超时");
+        } else if (!token2.equals(token1)) {
+            System.out.println("签名不一致");
+        } else {
+            System.out.println("请求通过");
         }
     }
 

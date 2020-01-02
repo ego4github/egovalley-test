@@ -18,10 +18,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 此示例演示了
- *      语音合成API调用
- *      动态获取token
- *      流式合成TTS
- *      首包延迟计算
+ * 语音合成API调用
+ * 动态获取token
+ * 流式合成TTS
+ * 首包延迟计算
  * (仅作演示，需用户根据实际情况实现)
  */
 public class SpeechSynthesizerTTS {
@@ -31,7 +31,7 @@ public class SpeechSynthesizerTTS {
     private String appKey;
     NlsClient client;
 
-    /// 直接传递token进来
+    // 直接传递token进来
     public SpeechSynthesizerTTS(String appKey, String token) {
         this.appKey = appKey;
         //TODO 重要提示 创建NlsClient实例,应用全局创建一个即可,生命周期可和整个应用保持一致,默认服务地址为阿里云线上服务地址
@@ -46,9 +46,9 @@ public class SpeechSynthesizerTTS {
         try {
             accessToken.apply();
             System.out.println("get token: " + accessToken.getToken() + ", expire time: " + accessToken.getExpireTime());
-            if(url.isEmpty()) {
+            if (url.isEmpty()) {
                 client = new NlsClient(accessToken.getToken());
-            }else {
+            } else {
                 client = new NlsClient(url, accessToken.getToken());
             }
         } catch (IOException e) {
@@ -60,7 +60,7 @@ public class SpeechSynthesizerTTS {
         SpeechSynthesizerListener listener = null;
         try {
             listener = new SpeechSynthesizerListener() {
-                File f=new File("tts_test.wav");
+                File f = new File("tts_test.wav");
                 FileOutputStream fout = new FileOutputStream(f);
                 private boolean firstRecvBinary = true;
 
@@ -68,14 +68,14 @@ public class SpeechSynthesizerTTS {
                 @Override
                 public void onComplete(SpeechSynthesizerResponse response) {
                     // TODO 当onComplete时表示所有TTS数据已经接收完成，因此这个是整个合成延迟，该延迟可能较大，未必满足实时场景
-                    System.out.println("name: " + response.getName() + ", status: " + response.getStatus()+", output file :"+f.getAbsolutePath());
+                    System.out.println("name: " + response.getName() + ", status: " + response.getStatus() + ", output file :" + f.getAbsolutePath());
                 }
 
                 //语音合成的语音二进制数据
                 @Override
                 public void onMessage(ByteBuffer message) {
                     try {
-                        if(firstRecvBinary) {
+                        if (firstRecvBinary) {
                             // TODO 此处是计算首包语音流的延迟，收到第一包语音流时，即可以进行语音播放，以提升响应速度(特别是实时交互场景下)
                             firstRecvBinary = false;
                             long now = System.currentTimeMillis();
@@ -119,9 +119,9 @@ public class SpeechSynthesizerTTS {
             //发音人
             synthesizer.setVoice("aixia");
             //语调，范围是-500~500，可选，默认是0
-            synthesizer.setPitchRate(-500);
+            synthesizer.setPitchRate(50);
             //语速，范围是-500~500，默认是0
-            synthesizer.setSpeechRate(0);
+            synthesizer.setSpeechRate(-50);
             //设置用于语音合成的文本
 //            synthesizer.setText("欢迎使用阿里巴巴智能语音合成服务，您可以说北京明天天气怎么样啊");
             synthesizer.setText("抽烟的，你妈死了，你在这给你妈上香呢");
