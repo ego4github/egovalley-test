@@ -29,43 +29,43 @@
         <include refid="Base_Column_List"/>
         FROM ego_user
         WHERE EGO_USERNAME = #{username,jdbcType=VARCHAR}
-          AND EGO_PASSWORD = #{password,jdbcType=VARCHAR}
+        AND EGO_PASSWORD = #{password,jdbcType=VARCHAR}
     </select>
 
     <!-- 用户注册 -->
     <insert id="insertUser" parameterType="com.egovalley.domain.EgoUser">
         INSERT INTO `ego_user` (
-            `USER_CODE`,
-            `USER_STATUS`,
-            `EGO_USERNAME`,
-            `EGO_PASSWORD`,
-            `EGO_NICKNAME`,
-            `EGO_GENDER`,
-            `EGO_BIRTHDAY`,
-            `EGO_PHONE`,
-            `EGO_EMAIL`,
-            `CREATE_TIME`,
-            `CREATOR`,
-            `LAST_UPDATE_TIME`,
-            `LAST_UPDATOR`,
-            `IS_DELETE`
+        `USER_CODE`,
+        `USER_STATUS`,
+        `EGO_USERNAME`,
+        `EGO_PASSWORD`,
+        `EGO_NICKNAME`,
+        `EGO_GENDER`,
+        `EGO_BIRTHDAY`,
+        `EGO_PHONE`,
+        `EGO_EMAIL`,
+        `CREATE_TIME`,
+        `CREATOR`,
+        `LAST_UPDATE_TIME`,
+        `LAST_UPDATOR`,
+        `IS_DELETE`
         )
         VALUES
-            (
-                #{userCode,jdbcType=VARCHAR},
-                #{userStatus,jdbcType=VARCHAR},
-                #{egoUsername,jdbcType=VARCHAR},
-                #{egoPassword,jdbcType=VARCHAR},
-                #{egoNickname,jdbcType=VARCHAR},
-                #{egoGender,jdbcType=VARCHAR},
-                #{egoBirthday,jdbcType=VARCHAR},
-                #{egoPhone,jdbcType=VARCHAR},
-                #{egoEmail,jdbcType=VARCHAR},
-                #{createTime,jdbcType=TIMESTAMP},
-                #{creator,jdbcType=VARCHAR},
-                #{lastUpdateTime,jdbcType=TIMESTAMP},
-                #{lastUpdator,jdbcType=VARCHAR},
-                #{isDelete,jdbcType=VARCHAR}
-            );
+        (
+        #{userCode,jdbcType=VARCHAR},
+        #{userStatus,jdbcType=VARCHAR},
+        #{egoUsername,jdbcType=VARCHAR},
+        #{egoPassword,jdbcType=VARCHAR},
+        #{egoNickname,jdbcType=VARCHAR},
+        #{egoGender,jdbcType=VARCHAR},
+        #{egoBirthday,jdbcType=VARCHAR},
+        #{egoPhone,jdbcType=VARCHAR},
+        #{egoEmail,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{creator,jdbcType=VARCHAR},
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+        #{lastUpdator,jdbcType=VARCHAR},
+        #{isDelete,jdbcType=VARCHAR}
+        );
     </insert>
 </mapper>
