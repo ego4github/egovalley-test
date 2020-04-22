@@ -33,7 +33,7 @@ public class LoginController {
      * @param request
      * @return
      */
-    @RequestMapping("/doLogin")
+    /*@RequestMapping("/doLogin")
     @ResponseBody
     public Map<String, Object> doLogin(HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -63,14 +63,14 @@ public class LoginController {
             resultMap.put("resMsg", "系统繁忙, 请稍后再试!");
         }
         return resultMap;
-    }
+    }*/
 
     /**
      * 测试用户登录
      * @param request
      * @return
      */
-    /*@RequestMapping("/doLogin")
+    @RequestMapping("/doLogin")
     @ResponseBody
     public Map<String, Object> doLogin(HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -103,7 +103,7 @@ public class LoginController {
             resultMap.put("resMsg", "系统繁忙, 请稍后再试!");
         }
         return resultMap;
-    }*/
+    }
 
     /**
      * 用户注销

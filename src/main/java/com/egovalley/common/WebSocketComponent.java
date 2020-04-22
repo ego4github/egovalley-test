@@ -81,9 +81,9 @@ public class WebSocketComponent {
             JSONObject.parseObject(message);
             flag = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(">>> not json type");
         }
-        if (flag && asrAudioDataService != null) {
+        if (flag && asrAudioDataService != null) {// TODO 这里有问题, 聊天室中手动输入json格式字符串, 就会调错
             try {
                 Map<String, Object> paramMap = JsonUtils.jsonToMap(message);
                 String channel = "" + paramMap.get("channel");
@@ -94,7 +94,7 @@ public class WebSocketComponent {
                 logger.error(">>> onMessage接收异常", e);
             }
         } else {
-            System.out.println("来自客户端的消息 => " + webSocketUser + ": " + message);
+            logger.info("来自客户端的消息 => " + webSocketUser + ": " + message);
             // 群发消息
             broadcast(webSocketUser + ": " + message);
         }
