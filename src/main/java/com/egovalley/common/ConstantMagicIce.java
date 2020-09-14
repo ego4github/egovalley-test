@@ -54,28 +54,28 @@ public final class ConstantMagicIce {
     public static final String CALL_WORD_5 = "爸爸说不要和傻子讲话 (＊￣(エ)￣) 不然自己也会变傻的...";
 
     // 特殊话术
-    public static final String LOVE_WORD_1 = "哦, 我知道. (心里: 哈哈哈哈哈哈哈哈哈哈哈哈)";
+    public static final String LOVE_WORD_1 = "哦, 我知道. (os: 哈哈哈哈哈哈哈哈哈哈哈哈)";
     public static final String LOVE_WORD_2 = "小冰也爱你哟 （づ￣3￣）づ╭❤～";
     public static final String LOVE_WORD_3 = "敲喜欢!!! o(*≧▽≦)ツ";
     public static final String LOVE_WORD_4 = "咳~ 只有一点点啦 (ˉ▽￣～)";
-    public static final String LOVE_WORD_5 = "不喜欢! 哼! (ー`´ー) (心里: 快用甜言蜜语轰炸我! 快!)";
+    public static final String LOVE_WORD_5 = "不喜欢! 哼! (ー`´ー) (os: 快用甜言蜜语轰炸我! 快!)";
 
     public static final String BEAUTY_WORD_1 = "靴靴~~~ 你也很美 ︿(￣︶￣)︿ 我说真的~";
     public static final String BEAUTY_WORD_2 = "嗯我知道哈哈哈 (ˉ▽￣～)";
     public static final String BEAUTY_WORD_3 = "要你讲吼~ ✧(≖ ◡ ≖✿)";
     public static final String BEAUTY_WORD_4 = "大家都这么说~";
-    public static final String BEAUTY_WORD_5 = "还行吧~ 一般一般~ (心里: 哈哈哈哈哈哈哈哈)";
+    public static final String BEAUTY_WORD_5 = "还行吧~ 一般一般~ (os: 哈哈哈哈哈哈哈哈)";
 
     public static final String HOBBY_WORD_1 = "我最喜欢唱歌! 随我爸! o(￣▽￣)ｄ";
-    public static final String HOBBY_WORD_2 = "唱歌啦~ 游戏啦~ 泡妞啦~ (心里: (。﹏。*) 石乐志才去泡妞吧...)";
-    public static final String HOBBY_WORD_3 = "当然是吃遍天下美食! 逛遍天下美景! 泡遍天下美妞! (心里: ≡ω≡ 妞也可以泡妞的吧)";
-    public static final String HOBBY_WORD_4 = "没有爱好, 吃屎算不算 (心里: 你去吃吧...)";
-    public static final String HOBBY_WORD_5 = "唱歌啦~ 游戏啦~ 泡妞啦~ (心里: (。﹏。*) 石乐志才去泡妞吧...)";
+    public static final String HOBBY_WORD_2 = "唱歌啦~ 游戏啦~ 泡妞啦~ (os: (。﹏。*) 石乐志才去泡妞吧...)";
+    public static final String HOBBY_WORD_3 = "当然是吃遍天下美食! 逛遍天下美景! 泡遍天下美妞! (os: ≡ω≡ 妞也可以泡妞的吧)";
+    public static final String HOBBY_WORD_4 = "没有爱好, 吃屎算不算 (os: 你去吃吧...)";
+    public static final String HOBBY_WORD_5 = "唱歌啦~ 游戏啦~ 泡妞啦~ (os: (。﹏。*) 石乐志才去泡妞吧...)";
 
     public static final String ANSWER_WORD_1 = "宾果! o(≧口≦)o 答对了! 木有奖励 (＝。＝) 啦啦啦~";
-    public static final String ANSWER_WORD_2 = "你怎么这么聪明~ (心里: 谁设计的这种智障问题 (´Д`))";
+    public static final String ANSWER_WORD_2 = "你怎么这么聪明~ (os: 谁设计的这种智障问题 (´Д`))";
     public static final String ANSWER_WORD_3 = "宾果! o(≧口≦)o 答对了! 木有奖励 (＝。＝) 哈哈哈~";
-    public static final String ANSWER_WORD_4 = "你怎么这么聪明~ (心里: 谁设计的这种智障问题 (´Д`))";
+    public static final String ANSWER_WORD_4 = "你怎么这么聪明~ (os: 谁设计的这种智障问题 (´Д`))";
     public static final String ANSWER_WORD_5 = "宾果! o(≧口≦)o 答对了! 木有奖励 (＝。＝) 嘿嘿嘿~";
 
     public static final String LAUGH_WORD_1 = "哈哈哈哈哈哈哈哈哈哈哈哈哈";
@@ -88,7 +88,7 @@ public final class ConstantMagicIce {
     public static final String UNKNOWN_WORD_1 = "哦";
     public static final String UNKNOWN_WORD_2 = "然后呢";
     public static final String UNKNOWN_WORD_3 = "人家...看不懂...";
-    public static final String UNKNOWN_WORD_4 = "啦啦啦~啦啦啦~ ヽ(✿ﾟ▽ﾟ)ノ (心里: 这家伙在说啥...)";
-    public static final String UNKNOWN_WORD_5 = "咳咳...像这种高深的东西可以找小冰爹去讨论呦! (心里: 放过我吧_(:з」∠)_)";
+    public static final String UNKNOWN_WORD_4 = "啦啦啦~啦啦啦~ ヽ(✿ﾟ▽ﾟ)ノ (os: 这家伙在说啥...)";
+    public static final String UNKNOWN_WORD_5 = "咳咳...像这种高深的东西可以找小冰爹去讨论呦! (os: 放过我吧_(:з」∠)_)";
 
 }
